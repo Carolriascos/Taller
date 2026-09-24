@@ -6,12 +6,13 @@ import { CustomerEntity } from "./entities/customer.entity";
 import { TypeOrmModule } from "node_modules/@nestjs/typeorm/dist/typeorm.module";
 import { DiningEntity } from "./entities/dining.entity";
 import { OrderRulesService } from "./order-rules/order-rules.service";
+import { OrderPriorityService } from "./order-priority.service";
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([OrderEntity, CustomerEntity, DiningEntity]),
   ],
-  providers: [OrdersService, OrderRulesService],
+  providers: [OrdersService, OrderRulesService, OrderPriorityService],
   controllers: [OrdersController],
 })
 export class OrdersModule {}

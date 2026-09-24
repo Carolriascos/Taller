@@ -9,6 +9,7 @@ import { OrderEntity } from "./entities/order.entity";
 import { Repository } from "typeorm";
 import { UpdateOrderDto } from "./dto/update-order.dto";
 import { OrderRulesService } from "./order-rules/order-rules.service";
+import { OrderPriorityService } from "./order-priority.service";
 
 @Injectable()
 export class OrdersService {
@@ -20,6 +21,8 @@ export class OrdersService {
     private readonly customersRepository: Repository<CustomerEntity>,
 
     private readonly orderRulesService: OrderRulesService,
+    private readonly orderPriorityService: OrderPriorityService,
+
   ) {}
 
   async create(createOrderDto: CreateOrderDto): Promise<OrderEntity> {

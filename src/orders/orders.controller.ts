@@ -1,12 +1,4 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Param,
-  Patch,
-  Post,
-  Query,
-} from "@nestjs/common";
+import {Body,Controller, Get,Param,Patch,Post, Query,} from "@nestjs/common";
 import { CreateOrderDto } from "./dto/create-order.dto";
 import { OrdersService } from "./orders.service";
 import { UpdateOrderDto } from "./dto/update-order.dto";
@@ -19,6 +11,17 @@ export class OrdersController {
   findAll() {
     return this.ordersService.findAll();
   }
+
+  @Get("pending-queue")
+  findPendingQueue() {
+    return this.ordersService.findPendingQueue();
+  }
+
+  @Get(":id/priority")
+  getPriority(@Param("id") id: string) {
+    return this.ordersService.getPriority(Number(id));
+  }
+
 
   @Patch(":id")
   update(@Param("id") id: string, @Body() updateOrderDto: UpdateOrderDto) {
