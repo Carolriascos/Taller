@@ -93,4 +93,23 @@ export class OrdersService {
 
     return this.ordersRepository.save(order);
   }
+  async getPriority(id: number): Promise<{
+    orderId: number;
+    status: string;
+    quantity: number;
+    priority: string;
+    message: string;
+  }> {
+    const order = await this.findOne(id);
+    const result = this.orderPriorityService.classify(order);
+
+    return {
+      orderId: order.id,
+      status: order.status,
+      quantity: order.quantity,
+      priority: result.priority,
+      message: result.message,
+    };
+  }
+
 }
